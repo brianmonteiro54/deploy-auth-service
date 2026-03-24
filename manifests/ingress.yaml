@@ -17,7 +17,7 @@ spec:
     - host: toggle.pt
       http:
         paths:
-          - path: /auth(/|$)(.*)
+          - path: /auth2(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:

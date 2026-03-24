@@ -1,0 +1,32 @@
+name: Validate GitOps Manifests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - homolog
+  workflow_dispatch:
+
+jobs:
+  validate-manifests:
+    name: Validate Kubernetes Manifests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Validar manifests
+        run: |
+          kubectl apply --dry-run=client -f manifests/namespace.yaml
+          kubectl apply --dry-run=client -f manifests/configmap.yaml
+          kubectl apply --dry-run=client -f manifests/secret.yaml
+          kubectl apply --dry-run=client -f manifests/secretstore.yaml
+          kubectl apply --dry-run=client -f manifests/externalsecret.yaml
+          kubectl apply --dry-run=client -f manifests/deployment.yaml
+          kubectl apply --dry-run=client -f manifests/service.yaml
+          kubectl apply --dry-run=client -f manifests/ingress.yaml

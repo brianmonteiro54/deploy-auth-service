@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: auth-service
-  namespace: togglemaster-auth-brian
+  namespace: togglemaster-auth
   labels:
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/component: auth
@@ -17,7 +17,7 @@ spec:
     - host: toggle.pt
       http:
         paths:
-          - path: /auth2(/|$)(.*)
+          - path: /auth(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:

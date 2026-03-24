@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: auth-service-config
-  namespace: togglemaster-auth-brian
+  namespace: togglemaster-auth
   labels:
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/component: auth

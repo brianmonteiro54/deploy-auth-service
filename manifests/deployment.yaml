@@ -55,17 +55,17 @@ spec:
           env:
             - name: DB_HOST
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_HOST
             - name: DB_PORT
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_PORT
             - name: DB_NAME
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_NAME
             - name: DB_USER
@@ -84,7 +84,7 @@ spec:
 
       containers:
         - name: auth-service
-          image: 420414435435.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:7e42325a36a947242bac31aa180c557fe100fc02
+          image: 420414435435.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:132c623331b550e30e3fbb265717d75e700b98da
           imagePullPolicy: IfNotPresent
           command:
             - /bin/sh

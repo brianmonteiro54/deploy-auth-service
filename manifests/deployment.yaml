@@ -55,17 +55,17 @@ spec:
           env:
             - name: DB_HOST
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_HOST
             - name: DB_PORT
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_PORT
             - name: DB_NAME
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: auth-service-config
                   key: AUTH_DB_NAME
             - name: DB_USER

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service
-  namespace: togglemaster-auth
+  namespace: togglemaster-auth-brian
   labels:
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/component: auth

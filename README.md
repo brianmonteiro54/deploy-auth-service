@@ -1,4 +1,4 @@
-# deploy-togglemaster-auth
+# deploy-togglemaster-auth-brian
 
 Repositório GitOps do microsserviço `auth-service` do projeto ToggleMaster.
 
@@ -18,7 +18,7 @@ Repositório GitOps do microsserviço `auth-service` do projeto ToggleMaster.
 
 ## Configuração atual
 
-- Namespace: `togglemaster-auth`
+- Namespace: `togglemaster-auth-brian`
 - Serviço: `auth-service`
 - Porta: `8001`
 - Healthcheck: `/health`
@@ -43,5 +43,5 @@ Repositório GitOps do microsserviço `auth-service` do projeto ToggleMaster.
 - NGINX Ingress Controller
 - External Secrets Operator
 - ArgoCD instalado e configurado
-- Secret `aws-credentials` no namespace `togglemaster-auth`
+- Secret `aws-credentials` no namespace `togglemaster-auth-brian`
 - Secret do RDS disponível no AWS Secrets Manager

@@ -84,7 +84,7 @@ spec:
 
       containers:
         - name: auth-service
-          image: 420414435435.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:7e42325a36a947242bac31aa180c557fe100fc02
+          image: 420414435435.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:2771f91f2eebb2934d29579f465c5efa38ef0672
           imagePullPolicy: IfNotPresent
           command:
             - /bin/sh

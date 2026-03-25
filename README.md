@@ -1,47 +1,43 @@
-# deploy-togglemaster-auth
+# Deploy Auth Service
 
-Repositório GitOps do microsserviço `auth-service` do projeto ToggleMaster.
+Repositório GitOps contendo os manifestos Kubernetes do **Auth Service** da plataforma ToggleMaster.
 
-## Estrutura
+## Visão Geral
 
-- `.github/workflows/cd.yml`: validação dos manifests Kubernetes
-- `manifests/`: arquivos YAML consumidos pelo ArgoCD
-- `README.md`: documentação do repositório
+Este repositório é monitorado pelo **ArgoCD** e contém exclusivamente os manifestos declarativos de deploy do Auth Service. Qualquer alteração nos manifests dispara uma sincronização automática no cluster EKS.
+
+A tag da imagem Docker é atualizada automaticamente pelo pipeline de CI do repositório [`auth-service`](../auth-service) a cada push na branch `main`.
+
+## Manifestos
+
+| Arquivo | Descrição |
+|---|---|
+| `deployment.yaml` | Deployment com 2 réplicas, rolling update, probes e init container para build da DATABASE_URL |
+| `service.yaml` | Service ClusterIP na porta 8001 |
+| `ingress.yaml` | Ingress para exposição externa |
+| `namespace.yaml` | Namespace `togglemaster-auth` |
+| `secretstore.yaml` | SecretStore para integração com AWS Secrets Manager |
+| `externalsecret.yaml` | ExternalSecret para injeção segura de credenciais do RDS |
 
 ## Fluxo GitOps
 
-1. O pipeline do repositório da aplicação gera uma nova imagem Docker.
-2. A imagem é publicada no registry.
-3. A tag da imagem é atualizada em `manifests/deployment.yaml`.
-4. O ArgoCD detecta a alteração neste repositório.
-5. O ArgoCD sincroniza automaticamente o ambiente.
+```
+auth-service (CI) → push na main → pipeline builda imagem → atualiza tag aqui → ArgoCD sincroniza → EKS
+```
 
-## Configuração atual
+## Estrutura
 
-- Namespace: `togglemaster-auth`
-- Serviço: `auth-service`
-- Porta: `8001`
-- Healthcheck: `/health`
-- Hostname: `toggle.pt`
-- Path público: `/auth`
-- Réplicas: `2`
+```
+├── manifests/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── ingress.yaml
+│   ├── namespace.yaml
+│   ├── secretstore.yaml
+│   └── externalsecret.yaml
+└── README.md
+```
 
-## Variáveis obrigatórias da aplicação
+## Contexto
 
-- `DATABASE_URL`
-- `MASTER_KEY`
-
-## Observações
-
-- O `DATABASE_URL` é montado no `initContainer`.
-- O `MASTER_KEY` é consumido via Kubernetes Secret.
-- As credenciais do banco são materializadas via `ExternalSecret`.
-- O arquivo `deployment.yaml` é o principal ponto atualizado pela pipeline da aplicação quando uma nova imagem for publicada.
-
-## Pré-requisitos no cluster
-
-- NGINX Ingress Controller
-- External Secrets Operator
-- ArgoCD instalado e configurado
-- Secret `aws-credentials` no namespace `togglemaster-auth`
-- Secret do RDS disponível no AWS Secrets Manager
+Este repositório faz parte do **Tech Challenge Fase 3 — POSTECH**, que implementa práticas de IaC (Terraform), CI/CD com DevSecOps e GitOps (ArgoCD) para os 5 microsserviços do ToggleMaster, rodando em AWS EKS via AWS Academy.

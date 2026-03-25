@@ -6,7 +6,7 @@ Repositório GitOps contendo os manifestos Kubernetes do **Auth Service** da pla
 
 Este repositório é monitorado pelo **ArgoCD** e contém exclusivamente os manifestos declarativos de deploy do Auth Service. Qualquer alteração nos manifests dispara uma sincronização automática no cluster EKS.
 
-A tag da imagem Docker é atualizada automaticamente pelo pipeline de CI do repositório [`auth-service`](../auth-service) a cada push na branch `main`.
+A tag da imagem Docker é atualizada automaticamente pelo pipeline de CI do repositório [`auth-service`](https://github.com/brianmonteiro54/auth-service) a cada push na branch `main`.
 
 ## Manifestos
 

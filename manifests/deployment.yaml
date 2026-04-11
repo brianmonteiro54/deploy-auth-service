@@ -7,6 +7,8 @@ metadata:
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/component: auth
     app.kubernetes.io/part-of: togglemaster
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 2
   selector:
@@ -84,7 +86,7 @@ spec:
 
       containers:
         - name: auth-service
-          image: 420414435435.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:132c623331b550e30e3fbb265717d75e700b98da
+          image: 637423306132.dkr.ecr.us-east-1.amazonaws.com/togglemaster/auth-service:8b9e87c9ab5e76dacd343f42033c968d8e7a9845
           imagePullPolicy: IfNotPresent
           command:
             - /bin/sh
